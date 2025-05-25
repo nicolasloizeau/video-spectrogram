@@ -30,7 +30,7 @@ def spectrogram(y, rate, args):
     f = f[:i]
     Sxx = Sxx[:i, :]
     Sxx /= np.max(Sxx)  # Normalize the spectrogram
-    Sxx = np.log(Sxx+np.min(Sxx)+1e-6)
+    Sxx = np.log(Sxx+np.min(Sxx)+args.logoffset)
     return f, t, Sxx
 
 def saveframe_plt(f, t, Sxx, i, args):

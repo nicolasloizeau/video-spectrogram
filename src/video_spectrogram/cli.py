@@ -31,7 +31,7 @@ def cli():
     parser.add_argument(
         "-p",
         "--prec",
-        help="",
+        help="window of the fft",
         default=0.05,
         type=float,
     )
@@ -53,7 +53,7 @@ def cli():
         "-c",
         "--colormap",
         help="matplotlib colormap",
-        default="plasma",
+        default="inferno",
     )
     parser.add_argument(
         "-vl",
@@ -73,6 +73,13 @@ def cli():
         "--matplotlib",
         help="Use matplotlib",
         action='store_true',
+    )
+    parser.add_argument(
+        "-lo",
+        "--logoffset",
+        help="Offset for logarithmic scaling of the spectrogram. Lower values filter out lower amplitudes, increasing the constrast. Default:1e-6",
+        default=1e-6,
+        type=float,
     )
     args = parser.parse_args()
     print(args)
