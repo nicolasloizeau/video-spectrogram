@@ -68,6 +68,12 @@ def cli():
         help="Color of the bar in the spectrogram",
         default="white",
     )
+    parser.add_argument(
+        "-plt",
+        "--matplotlib",
+        help="Use matplotlib",
+        action='store_true',
+    )
     args = parser.parse_args()
     print(args)
     generate_spectrogram_video(args)

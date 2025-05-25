@@ -9,6 +9,8 @@ from os import system
 import cv2
 import os
 import moviepy as mpe
+import matplotlib
+matplotlib.use('Agg')
 
 
 
@@ -93,12 +95,15 @@ def saveframes(f, t, Sxx, args):
     time = 0
     maxi1 = int(args.max_video_lenght * args.fps)
     maxi2 = int(tmax * args.fps)
+    saveframe = saveframe_pil
+    if args.matplotlib:
+        saveframe = saveframe_plt
     for i in tqdm(range(min(maxi1, maxi2))):
         window = [int(time*rate2), int((time + args.window_lenght)*rate2)]
         ti = t[window[0]:window[1]]
         Sxxi = Sxx[:, window[0]:window[1]]
         time += timestep
-        saveframe_plt(f, ti, Sxxi, i, args)
+        saveframe(f, ti, Sxxi, i, args)
 
 def add_audio(args):
     audio = mpe.AudioFileClip(args.file)
